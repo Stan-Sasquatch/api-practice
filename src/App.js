@@ -2,45 +2,76 @@ import React from 'react';
 
 import './App.css';
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import UsersPage from './UsersPage';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      JSONUser: {},
-      loaded: false
+
     };
 
   }
 
-  componentDidMount() {
-    fetch('https://api.jsonbin.io/b/5da1d439ef829c4e36d6c10e',
-      {
-        headers: { "secret-key": "$2b$10$0Ak1yhEQ.Rx2bhjs1ID6ne/abaT.2f2.lQnd4/EJ3ZGcr55RHDily", "Content-Type": "application/json" }
-      })
-      .then(response => response.json())
-      .then(json => this.setState({ JSONUser: json, loaded: true }))
-      .catch(error => console.log("Error: ", error))
-  }
 
 
 
 
   render() {
-    if (!this.state.loaded) { return <div>Loading...</div> }
 
-    const firstName = this.state.JSONUser[1]["first_name"]
-    const lastName = this.state.JSONUser[1]["last_name"]
+
 
     return (
 
 
-      <div>testing:{firstName
-      }
-        <h1>
-          {lastName}
-        </h1></div>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/users">Users</Link>
+              </li>
+            </ul>
+          </nav>
+
+
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/users">
+              <UsersPage />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
 
     );
+    function Home() {
+      return <h2>Test Home</h2>;
+    }
+
+    function About() {
+      return <h2>About</h2>;
+    }
+
+
+
   }
 };
 export default App;

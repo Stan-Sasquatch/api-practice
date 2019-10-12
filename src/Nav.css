@@ -1,0 +1,10 @@
+.nav li{
+    cursor: pointer;
+    display: inline-block;
+    width: 40px;
+    padding: 20px;
+}
+
+.nav li.active{
+    color: green
+} 

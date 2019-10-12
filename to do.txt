@@ -1,0 +1,12 @@
+css: format user table data, centralise, 
+jscript:
+add other properties to user
+'showing 10 profiles of {total}'
+
+sorting by
+multiple props
+
+searching/filtering
+
+specific user profile page
+
