@@ -19,17 +19,8 @@ class App extends React.Component {
 
   }
 
-
-
-
-
   render() {
-
-
-
     return (
-
-
       <Router>
         <div>
           <nav>
@@ -45,7 +36,6 @@ class App extends React.Component {
               </li>
             </ul>
           </nav>
-
 
           <Switch>
             <Route path="/about">
