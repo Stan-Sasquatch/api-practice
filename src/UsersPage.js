@@ -52,8 +52,8 @@ class UsersPage extends React.Component {
             {pageOfUsers.map(user => <User user={user} />)}
 
 
-            <div>current page is {this.state.currentPage}</div>
-            <div>Showing users {this.state.currentPage * this.state.numberOfUsersToDisplay} to {this.state.currentPage * this.state.numberOfUsersToDisplay + (this.state.numberOfUsersToDisplay % 10 == 0 ? 10 : this.state.numberOfUsersToDisplay % 10)} out of {this.state.numberOfUsers} users</div>
+            <div>current page is {this.state.currentPage + 1}</div>
+            <div>Showing users {this.state.currentPage * this.state.numberOfUsersToDisplay + 1} to {(this.state.currentPage + 1) * this.state.numberOfUsersToDisplay > this.state.numberOfUsers ? this.state.numberOfUsers : (this.state.currentPage + 1) * this.state.numberOfUsersToDisplay} out of {this.state.numberOfUsers} users</div>
         </div>);
     }
 }
