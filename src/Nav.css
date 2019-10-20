@@ -1,10 +1,15 @@
 .nav li{
     cursor: pointer;
     display: inline-block;
-    width: 40px;
+    width: 25px;
+    height: 25px;
     padding: 20px;
+    border: solid;
+    border-color: black;
+    text-align: center;
 }
 
 .nav li.active{
-    color: green
+    
+    background-color: lightblue;
 } 
