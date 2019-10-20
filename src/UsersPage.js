@@ -31,7 +31,15 @@ class UsersPage extends React.Component {
         const pages = Math.ceil(json.length / numUsersToDisplay)
         const startPage = 0
 
-        this.setState({ allUsers: json, loaded: true, numberOfUsers: json.length, numberOfPages: pages, currentPage: startPage, numberOfUsersToDisplay: numUsersToDisplay })
+        const sortedUsers = json.sort(function (a, b) {
+            if (a["last_name"] < b["last_name"]) { return -1; }
+            if (a["last_name"] > b["last_name"]) { return 1; }
+            return 0;
+        })
+
+
+
+        this.setState({ allUsers: sortedUsers, loaded: true, numberOfUsers: json.length, numberOfPages: pages, currentPage: startPage, numberOfUsersToDisplay: numUsersToDisplay })
     }
     pageListOnClick = (pageNum) => {
         this.setState({ currentPage: pageNum })
