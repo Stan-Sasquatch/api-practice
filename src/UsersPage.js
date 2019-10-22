@@ -63,18 +63,10 @@ class UsersPage extends React.Component {
                 }
                 return new Date(...toDateObject(a["Date Joined"])) - new Date(...toDateObject(b["Date Joined"]))
             });
-
-
-
-
-
-
-
-
         this.setState({
             allUsers: sortedUsers, loaded: true, numberOfUsers: json.length, numberOfPages: pages, currentPage: startPage, numberOfUsersToDisplay: numUsersToDisplay, sortByDate: sorting
         })
-        console.log(this.state)
+
     }
     pageListOnClick = (pageNum) => {
         this.setState({ currentPage: pageNum })
@@ -84,9 +76,6 @@ class UsersPage extends React.Component {
 
     render() {
         if (!this.state.loaded) { return <div>Loading...</div> }
-
-
-
         const pageOfUsers = this.state.allUsers.slice(this.state.currentPage * this.state.numberOfUsersToDisplay, this.state.currentPage * this.state.numberOfUsersToDisplay + (this.state.numberOfUsersToDisplay % 10 == 0 ? 10 : this.state.numberOfUsersToDisplay % 10))
 
 
