@@ -3,6 +3,7 @@ import NavBar from './Nav';
 import UserDisplayInput from './UserDisplayInput';
 import UserToggleSort from './UserToggleSort';
 import UserTable from './UserTable';
+import { alphabeticalSortByField, dateSort } from './Utils'
 
 class UsersPage extends React.Component {
     constructor(props) {
@@ -32,39 +33,15 @@ class UsersPage extends React.Component {
 
         const pages = Math.ceil(json.length / numUsersToDisplay)
         const startPage = 0;
-        const sorting = toggleSort ? !this.state.sortByDate : this.sortByDate
-
-        const sortedUsers =
-
-
-            !sorting ? json.sort(function (a, b) {
-                if (a["last_name"] < b["last_name"]) { return -1; }
-                if (a["last_name"] > b["last_name"]) { return 1; }
-                return 0;
-            }) : json.sort(function (a, b) {
-                let toDateObject = (stringDate) => {
-                    let slashPosition = []
-                    for (let i = 0; i < stringDate.length; i++) {
-                        if (stringDate.charAt(i) == "/") {
-                            slashPosition.push(i);
-                        }
-                    }
-
-                    let month = stringDate.substring(0, slashPosition[0]) - 1;
+        const dateSortBool = toggleSort ? !this.state.sortByDate : this.state.sortByDate
+        const sortedUsers = !dateSortBool ? json.sort(alphabeticalSortByField("last_name")) : json.sort(dateSort);
 
 
-                    let day = stringDate.substring(slashPosition[0] + 1, slashPosition[1]);
 
-                    let year = stringDate.substring(slashPosition[1] + 1);
 
-                    let dateObject = [year, month, day]
 
-                    return dateObject
-                }
-                return new Date(...toDateObject(a["Date Joined"])) - new Date(...toDateObject(b["Date Joined"]))
-            });
         this.setState({
-            allUsers: sortedUsers, loaded: true, numberOfUsers: json.length, numberOfPages: pages, currentPage: startPage, numberOfUsersToDisplay: numUsersToDisplay, sortByDate: sorting
+            allUsers: sortedUsers, loaded: true, numberOfUsers: json.length, numberOfPages: pages, currentPage: startPage, numberOfUsersToDisplay: numUsersToDisplay, sortByDate: dateSortBool
         })
 
     }
