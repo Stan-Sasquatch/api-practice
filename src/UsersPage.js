@@ -36,12 +36,14 @@ class UsersPage extends React.Component {
         const dateSortBool = toggleSort ? !this.state.sortByDate : this.state.sortByDate
         const sortedUsers = !dateSortBool ? json.sort(alphabeticalSortByField("last_name")) : json.sort(dateSort);
 
-
-
-
-
         this.setState({
-            allUsers: sortedUsers, loaded: true, numberOfUsers: json.length, numberOfPages: pages, currentPage: startPage, numberOfUsersToDisplay: numUsersToDisplay, sortByDate: dateSortBool
+            allUsers: sortedUsers,
+            loaded: true,
+            numberOfUsers: json.length,
+            numberOfPages: pages,
+            currentPage: startPage,
+            numberOfUsersToDisplay: numUsersToDisplay,
+            sortByDate: dateSortBool
         })
 
     }
