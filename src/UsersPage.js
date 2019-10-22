@@ -83,8 +83,15 @@ class UsersPage extends React.Component {
             <UserToggleSort onClick={() => this.initialiseUserPage(this.state.allUsers, this.state.numberOfUsersToDisplay, true)} sortType={this.state.sortByDate} />
             <UserDisplayInput value={this.state.numberOfUsersToDisplay} onChange={(event) => this.initialiseUserPage(this.state.allUsers, event.target.value, false)} />
             <NavBar numPages={this.state.numberOfPages} currentPage={this.state.currentPage} onClick={this.pageListOnClick} />
-            {pageOfUsers.map(user => <User user={user} />)}
 
+            <table>
+                <tr>
+                    <th>Last Name</th>
+                    <th>Country</th>
+                    <th>Date Joined</th>
+                </tr>
+                {pageOfUsers.map(user => <User user={user} />)}
+            </table>
 
             <div>current page is {this.state.currentPage + 1}</div>
             <div>Showing users {this.state.currentPage * this.state.numberOfUsersToDisplay + 1} to {(this.state.currentPage + 1) * this.state.numberOfUsersToDisplay > this.state.numberOfUsers ? this.state.numberOfUsers : (this.state.currentPage + 1) * this.state.numberOfUsersToDisplay} out of {this.state.numberOfUsers} users</div>

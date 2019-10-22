@@ -2,7 +2,7 @@ import React from 'react';
 
 const User = (props) => {
 
-    return (<div>{props.user["last_name"] + ", " + props.user["Country"]}; date joined: {props.user["Date Joined"]}</div>);
+    return (<tr><td>{props.user["last_name"]}</td><td> {props.user["Country"]}</td><td>{props.user["Date Joined"]}</td></tr>);
 }
 
 export default User;
