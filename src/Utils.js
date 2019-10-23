@@ -12,28 +12,13 @@ export function alphabeticalSortByField(field) {
 }
 
 
-
-
-
 export function dateSort(a, b) {
-    let toDateObject = (stringDate) => {
-        let slashPosition = []
-        for (let i = 0; i < stringDate.length; i++) {
-            if (stringDate.charAt(i) == "/") {
-                slashPosition.push(i);
-            }
-        }
-
-        let month = stringDate.substring(0, slashPosition[0]) - 1;
-
-
-        let day = stringDate.substring(slashPosition[0] + 1, slashPosition[1]);
-
-        let year = stringDate.substring(slashPosition[1] + 1);
-
-        let dateObject = [year, month, day]
-
-        return dateObject
-    }
-    return new Date(...toDateObject(a["Date Joined"])) - new Date(...toDateObject(b["Date Joined"]))
+    return toDateObject(a["Date Joined"]) - toDateObject(b["Date Joined"])
 }
+
+export function toDateObject(stringDate) {
+    let dateArray = stringDate.split("/");
+    let dateObject = [dateArray[2], dateArray[0] - 1, dateArray[1]]
+    return new Date(...dateObject)
+}
+
