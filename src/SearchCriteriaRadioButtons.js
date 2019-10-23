@@ -2,7 +2,7 @@ import React from 'react';
 const SearchCriteriaRadioButtons = (props) => {
     return (<form>
         <input type="radio" id="CriteriaChoiceLastName"
-            name="CriteriaChoice" value="last_name" checked={props.criteria === "last_name"} onChange={props.onChange} />
+            name="CriteriaChoice" value="last_name" checked={props.criteria === "Last Name"} onChange={props.onChange} />
         <label htmlFor="CriteriaChoiceLastName">Last Name</label>
         <input type="radio" id="CriteriaChoiceCountry"
             name="CriteriaChoice" value="Country" checked={props.criteria === "Country"} onChange={props.onChange} />

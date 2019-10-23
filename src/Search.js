@@ -7,7 +7,10 @@ class Search extends React.Component {
         super(props);
         this.state = {
             allUsers: [],
-            searchCriteria: "last_name"
+            searchCriteria: "Last Name",
+            userInput: "",
+            search: false,
+            submittedInput: ""
         }
     }
     componentDidMount() {
@@ -23,8 +26,23 @@ class Search extends React.Component {
     handleCriteriaChange = (event) => {
         this.setState({
             searchCriteria: event.target.value
+
         })
     }
+
+    handleInputSubmit = (event) => {
+        event.preventDefault()
+
+        this.setState({
+            submittedInput: this.state.userInput
+
+        })
+    }
+
+    handleInputChange = event => {
+        this.setState({ userInput: event.target.value })
+    }
+
 
 
 
@@ -32,8 +50,14 @@ class Search extends React.Component {
     render() {
         return (<div>
             <SearchCriteriaRadioButtons criteria={this.state.searchCriteria} onChange={this.handleCriteriaChange} />
-            {this.state.searchCriteria === "last_name" ? "Currently searching by user's last name" : "Currently searching by user's country"}
-            <SearchBar />
+            {this.state.searchCriteria === "Last Name" ? "Currently searching by user's last name" : "Currently searching by user's country"}
+            <SearchBar onSubmit={this.handleInputSubmit} onChange={this.handleInputChange} />
+
+            {this.state.submittedInput !== "" && <div>Currently searching for {this.state.searchCriteria}: {this.state.submittedInput} </div>}
+
+            <div> User input: {this.state.userInput}</div>
+            <div> Submitted Input:{this.state.submittedInput}</div>
+
         </div>);
     }
 }
