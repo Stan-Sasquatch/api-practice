@@ -1,6 +1,5 @@
 export function alphabeticalSortByField(field) {
 
-
     return function alphabeticalSort(a, b) {
 
         if (a[field] < b[field]) { return -1; }
@@ -13,6 +12,7 @@ export function alphabeticalSortByField(field) {
 
 
 export function dateSort(a, b) {
+
     return toDateObject(a["Date Joined"]) - toDateObject(b["Date Joined"])
 }
 

@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import UsersPage from './UsersPage';
+import Search from './Search';
 
 class App extends React.Component {
   constructor(props) {
@@ -29,17 +30,17 @@ class App extends React.Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/search">Search Users</Link>
               </li>
               <li>
-                <Link to="/users">Users</Link>
+                <Link to="/users">All Users</Link>
               </li>
             </ul>
           </nav>
 
           <Switch>
-            <Route path="/about">
-              <About />
+            <Route path="/search">
+              <Search />
             </Route>
             <Route path="/users">
               <UsersPage />
@@ -53,12 +54,10 @@ class App extends React.Component {
 
     );
     function Home() {
-      return <h2>Test Home</h2>;
+      return <h2>Home</h2>;
     }
 
-    function About() {
-      return <h2>About</h2>;
-    }
+
 
 
 
