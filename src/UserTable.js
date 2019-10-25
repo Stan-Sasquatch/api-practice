@@ -1,8 +1,9 @@
 import React from 'react';
-import User from "./User";
+import UserRow from "./UserRow";
 import './UserTable.css';
 
 const UserTable = (props) => {
+
     return (<table>
         <tbody>
             <tr>
@@ -10,7 +11,7 @@ const UserTable = (props) => {
                 <th>Country</th>
                 <th>Date Joined</th>
             </tr>
-            {props.page.map(user => <User user={user} />)}
+            {props.page.map(user => <UserRow user={user} />)}
         </tbody></table>);
 }
 

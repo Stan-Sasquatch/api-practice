@@ -15,7 +15,8 @@ class UsersPage extends React.Component {
             numberOfPages: 0,
             currentPage: 0,
             numberOfUsersToDisplay: 10,
-            sortByDate: false
+            sortByDate: false,
+            userZero: false
         }
     }
 
@@ -29,6 +30,9 @@ class UsersPage extends React.Component {
             )
             .catch(error => console.log("Error: ", error))
     }
+
+
+
     initialiseUserPage = (json, numUsersToDisplay, toggleSort) => {
 
         const pages = Math.ceil(json.length / numUsersToDisplay)
@@ -43,13 +47,16 @@ class UsersPage extends React.Component {
             numberOfPages: pages,
             currentPage: startPage,
             numberOfUsersToDisplay: numUsersToDisplay,
-            sortByDate: dateSortBool
+            sortByDate: dateSortBool,
+            userZero: false
         })
 
     }
     pageListOnClick = (pageNum) => {
         this.setState({ currentPage: pageNum })
     }
+
+    handleChange = (event) => event.target.value > 0 && event.target.value < 11 ? this.initialiseUserPage(this.state.allUsers, event.target.value, false) : event.target.value > 10 ? alert("please enter a number between 1 and 10") : this.setState({ userZero: true });
 
 
 
@@ -60,7 +67,7 @@ class UsersPage extends React.Component {
 
         return (<div>
             <UserToggleSort onClick={() => this.initialiseUserPage(this.state.allUsers, this.state.numberOfUsersToDisplay, true)} sortType={this.state.sortByDate} />
-            <UserDisplayInput value={this.state.numberOfUsersToDisplay} onChange={(event) => this.initialiseUserPage(this.state.allUsers, event.target.value, false)} />
+            <UserDisplayInput value={!this.state.userZero ? this.state.numberOfUsersToDisplay : ''} onChange={this.handleChange} />
 
             <UserTable page={pageOfUsers} />
 
