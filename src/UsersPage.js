@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from './Nav';
 import UserDisplayInput from './UserDisplayInput';
-import UserToggleSort from './UserToggleSort';
+import ToggleButton from './ToggleButton';
 import UserTable from './UserTable';
 import { alphabeticalSortByField, dateSort } from './Utils'
 
@@ -66,7 +66,7 @@ class UsersPage extends React.Component {
 
 
         return (<div>
-            <UserToggleSort onClick={() => this.initialiseUserPage(this.state.allUsers, this.state.numberOfUsersToDisplay, true)} sortType={this.state.sortByDate} />
+            <ToggleButton onClick={() => this.initialiseUserPage(this.state.allUsers, this.state.numberOfUsersToDisplay, true)} text={this.state.sortByDate ? "Click to Sort Alphabetically" : "Click to Sort Chronologically"} />
             <UserDisplayInput value={!this.state.userZero ? this.state.numberOfUsersToDisplay : ''} onChange={this.handleChange} />
 
             <UserTable page={pageOfUsers} />
