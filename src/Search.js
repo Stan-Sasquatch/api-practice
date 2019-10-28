@@ -43,9 +43,6 @@ class Search extends React.Component {
         this.setState({ userInput: event.target.value })
     }
 
-
-
-
     render() {
         return (<div>
             <RadioButtonGroup criteria={this.state.searchCriteria} onChange={this.handleCriteriaChange} structure={["CriteriaChoice", ["Last Name", "Country"]]} />
