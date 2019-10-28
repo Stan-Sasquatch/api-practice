@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import SearchCriteriaRadioButtons from './SearchCriteriaRadioButtons';
+import RadioButtonGroup from './RadioButtonGroup';
 
 class Search extends React.Component {
     constructor(props) {
@@ -46,11 +46,10 @@ class Search extends React.Component {
 
 
 
-
     render() {
         return (<div>
-            <SearchCriteriaRadioButtons criteria={this.state.searchCriteria} onChange={this.handleCriteriaChange} />
-            {this.state.searchCriteria === "Last Name" ? "Currently searching by user's last name" : "Currently searching by user's country"}
+            <RadioButtonGroup criteria={this.state.searchCriteria} onChange={this.handleCriteriaChange} structure={["CriteriaChoice", ["Last Name", "Country"]]} />
+            <div>Currently searching by user's <b>{this.state.searchCriteria}</b></div>
             <SearchBar onSubmit={this.handleInputSubmit} onChange={this.handleInputChange} />
             {this.state.submittedInput !== "" && <div>Currently searching for {this.state.searchCriteria}: {this.state.submittedInput} </div>}
         </div>);
