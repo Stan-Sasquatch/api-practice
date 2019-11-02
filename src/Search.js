@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import RadioButtonGroup from './RadioButtonGroup';
+import UserTable from './UserTable';
 
 class Search extends React.Component {
     constructor(props) {
@@ -43,12 +44,20 @@ class Search extends React.Component {
         this.setState({ userInput: event.target.value })
     }
 
+    findUsers = (criteria, input, array) => {
+        const userProp = criteria == "Last Name" ? "last_name" : "Country"
+        const pageArray = array.filter(user => user[userProp] == input)
+
+        return pageArray
+    }
+
     render() {
         return (<div>
             <RadioButtonGroup criteria={this.state.searchCriteria} onChange={this.handleCriteriaChange} structure={["CriteriaChoice", ["Last Name", "Country"]]} />
             <div>Currently searching by user's <b>{this.state.searchCriteria}</b></div>
             <SearchBar onSubmit={this.handleInputSubmit} onChange={this.handleInputChange} />
             {this.state.submittedInput !== "" && <div>Currently searching for {this.state.searchCriteria}: {this.state.submittedInput} </div>}
+            {this.state.submittedInput !== "" && <UserTable page={this.findUsers(this.state.searchCriteria, this.state.submittedInput, this.state.allUsers)} />}
         </div>);
     }
 }
