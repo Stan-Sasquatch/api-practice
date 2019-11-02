@@ -7,11 +7,11 @@ const UserTable = (props) => {
     return (<table>
         <tbody>
             <tr>
-                <th>Last Name</th>
-                <th>Country</th>
-                <th>Date Joined</th>
+
+                {props.fieldArray.map(field => <th>{field}</th>)}
+
             </tr>
-            {props.page.map(user => <UserRow user={user} />)}
+            {props.page.map(user => <UserRow fieldArray={props.fieldArray} user={user} />)}
         </tbody></table>);
 }
 

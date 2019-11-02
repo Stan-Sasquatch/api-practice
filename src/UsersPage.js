@@ -69,7 +69,7 @@ class UsersPage extends React.Component {
             <ToggleButton onClick={() => this.initialiseUserPage(this.state.allUsers, this.state.numberOfUsersToDisplay, true)} text={this.state.sortByDate ? "Click to Sort Alphabetically" : "Click to Sort Chronologically"} />
             <UserDisplayInput value={!this.state.userZero ? this.state.numberOfUsersToDisplay : ''} onChange={this.handleChange} />
 
-            <UserTable page={pageOfUsers} />
+            <UserTable page={pageOfUsers} fieldArray={["Last Name", "Country", "Date Joined"]} />
 
             <div>current page is {this.state.currentPage + 1}</div>
             <div>Showing users {this.state.currentPage * this.state.numberOfUsersToDisplay + 1} to {(this.state.currentPage + 1) * this.state.numberOfUsersToDisplay > this.state.numberOfUsers ? this.state.numberOfUsers : (this.state.currentPage + 1) * this.state.numberOfUsersToDisplay} out of {this.state.numberOfUsers} users</div>

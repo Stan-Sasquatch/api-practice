@@ -57,7 +57,7 @@ class Search extends React.Component {
             <div>Currently searching by user's <b>{this.state.searchCriteria}</b></div>
             <SearchBar onSubmit={this.handleInputSubmit} onChange={this.handleInputChange} />
             {this.state.submittedInput !== "" && <div>Currently searching for {this.state.searchCriteria}: {this.state.submittedInput} </div>}
-            {this.state.submittedInput !== "" && <UserTable page={this.findUsers(this.state.searchCriteria, this.state.submittedInput, this.state.allUsers)} />}
+            {this.state.submittedInput !== "" && <UserTable page={this.findUsers(this.state.searchCriteria, this.state.submittedInput, this.state.allUsers)} fieldArray={["First Name", "Last Name", "Country"]} />}
         </div>);
     }
 }
