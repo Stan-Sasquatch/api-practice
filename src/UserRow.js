@@ -1,15 +1,8 @@
 import React from 'react';
-import { toDateObject } from './Utils'
+import { toDateObject, fieldDisplayToProps } from './Utils'
 const UserRow = (props) => {
 
-    const fieldDisplayToProps = {
-        "id": "id",
-        "First Name": "first_name",
-        "Last Name": "last_name",
-        "Email": "email",
-        "Country": "Country",
-        "Date Joined": "Date Joined"
-    }
+
 
     return (
 

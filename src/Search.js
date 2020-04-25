@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import RadioButtonGroup from './RadioButtonGroup';
 import UserTable from './UserTable';
+import { toDateObject, fieldDisplayToProps } from './Utils'
 
 class Search extends React.Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class Search extends React.Component {
     }
 
     findUsers = (criteria, input, array) => {
-        const userProp = criteria == "Last Name" ? "last_name" : "Country"
+        const userProp = fieldDisplayToProps[criteria]
         const pageArray = array.filter(user => user[userProp] == input)
 
         return pageArray
@@ -53,7 +54,7 @@ class Search extends React.Component {
 
     render() {
         return (<div>
-            <RadioButtonGroup criteria={this.state.searchCriteria} onChange={this.handleCriteriaChange} structure={["CriteriaChoice", ["Last Name", "Country"]]} />
+            <RadioButtonGroup current={this.state.searchCriteria} onChange={this.handleCriteriaChange} structure={["CriteriaChoice", ["Last Name", "Country", "First Name"]]} />
             <div>Currently searching by user's <b>{this.state.searchCriteria}</b></div>
             <SearchBar onSubmit={this.handleInputSubmit} onChange={this.handleInputChange} />
             {this.state.submittedInput !== "" && <div>Currently searching for {this.state.searchCriteria}: {this.state.submittedInput} </div>}

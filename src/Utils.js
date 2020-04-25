@@ -22,3 +22,12 @@ export function toDateObject(stringDate) {
     return new Date(...dateObject)
 }
 
+export const fieldDisplayToProps = {
+    "id": "id",
+    "First Name": "first_name",
+    "Last Name": "last_name",
+    "Email": "email",
+    "Country": "Country",
+    "Date Joined": "Date Joined"
+}
+
