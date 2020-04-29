@@ -56,21 +56,22 @@ class UsersPage extends React.Component {
         this.setState({ currentPage: pageNum })
     }
 
-    handleChange = (event) => event.target.value > 0 && event.target.value < 11 ? this.initialiseUserPage(this.state.allUsers, event.target.value, false) : event.target.value > 10 ? alert("please enter a number between 1 and 10") : this.setState({ userZero: true });
+    handleNumUsersChange = (event) => event.target.value > 0 && event.target.value < 11 ? this.initialiseUserPage(this.state.allUsers, event.target.value, false) : event.target.value > 10 ? alert("please enter a number between 1 and 10") : this.setState({ userZero: true });
 
-
+    handleCriteriaChange = (event) => {
+        this.initialiseUserPage(this.state.allUsers, this.state.numberOfUsersToDisplay, event.target.value)
+    }
 
     render() {
         if (!this.state.loaded) { return <div>Loading...</div> }
         const pageOfUsers = this.state.allUsers.slice(this.state.currentPage * this.state.numberOfUsersToDisplay, this.state.currentPage * this.state.numberOfUsersToDisplay + (this.state.numberOfUsersToDisplay % 10 == 0 ? 10 : this.state.numberOfUsersToDisplay % 10))
-
+        const fieldsDisplayedArray = ["Last Name", "Country", "Date Joined"]
 
         return (<div>
-            <ToggleButton onClick={() => this.initialiseUserPage(this.state.allUsers, this.state.numberOfUsersToDisplay, this.state.sortCriteria == "Date Joined" ? "Last Name" : "Date Joined")} text={this.state.sortCriteria == "Date Joined" ? "Click to Sort Alphabetically" : "Click to Sort Chronologically"} />
-            {/* <RadioButtonGroup current ="" /> */}
-            <UserDisplayInput value={!this.state.userZero ? this.state.numberOfUsersToDisplay : ''} onChange={this.handleChange} />
 
-            <UserTable page={pageOfUsers} fieldArray={["Last Name", "Country", "Date Joined"]} />
+            {/* <RadioButtonGroup current={this.state.sortCriteria} onChange={this.handleCriteriaChange} structure={["SortCriteriaChoice", fieldsDisplayedArray]} /> */}
+            <UserDisplayInput value={!this.state.userZero ? this.state.numberOfUsersToDisplay : ''} onChange={this.handleNumUsersChange} />
+            <UserTable page={pageOfUsers} fieldArray={fieldsDisplayedArray} current={this.state.sortCriteria} onChange={this.handleCriteriaChange} structure={["SortCriteriaChoice", fieldsDisplayedArray]} />
 
             <div>current page is {this.state.currentPage + 1}</div>
             <div>Showing users {this.state.currentPage * this.state.numberOfUsersToDisplay + 1} to {(this.state.currentPage + 1) * this.state.numberOfUsersToDisplay > this.state.numberOfUsers ? this.state.numberOfUsers : (this.state.currentPage + 1) * this.state.numberOfUsersToDisplay} out of {this.state.numberOfUsers} users</div>

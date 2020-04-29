@@ -1,6 +1,7 @@
 import React from 'react';
 import UserRow from "./UserRow";
 import './UserTable.css';
+import RadioButton from './RadioButton';
 
 const UserTable = (props) => {
 
@@ -8,7 +9,8 @@ const UserTable = (props) => {
         <tbody>
             <tr>
 
-                {props.fieldArray.map(field => <th>{field}</th>)}
+                {props.fieldArray.map(field => <RadioButton group={"SortCriteria"} choice={field} current={props.current} onChange={props.onChange} />)}
+
 
             </tr>
             {props.page.map(user => <UserRow fieldArray={props.fieldArray} user={user} />)}

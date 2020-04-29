@@ -54,7 +54,7 @@ class Search extends React.Component {
 
     render() {
         return (<div>
-            <RadioButtonGroup current={this.state.searchCriteria} onChange={this.handleCriteriaChange} structure={["CriteriaChoice", ["Last Name", "Country", "First Name"]]} />
+            <RadioButtonGroup current={this.state.searchCriteria} onChange={this.handleCriteriaChange} structure={["SearchCriteriaChoice", ["Last Name", "Country", "First Name"]]} />
             <div>Currently searching by user's <b>{this.state.searchCriteria}</b></div>
             <SearchBar onSubmit={this.handleInputSubmit} onChange={this.handleInputChange} />
             {this.state.submittedInput !== "" && <div>Currently searching for {this.state.searchCriteria}: {this.state.submittedInput} </div>}
