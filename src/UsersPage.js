@@ -35,7 +35,6 @@ class UsersPage extends React.Component {
 
 
     initialiseUserPage = (json, numUsersToDisplay, criteria) => {
-        console.log(json);
         const pages = Math.ceil(json.length / numUsersToDisplay)
         const startPage = 0;
         const sortedUsers = criteria == 'Date Joined' ? json.sort(dateSort) : json.sort(alphabeticalSortByField(fieldDisplayToProps[criteria]));
